@@ -15,10 +15,6 @@ st.set_page_config(
 )
 
 st.title("2D Floorplan to 3D Reconstruction")
-st.write(
-    "Unggah denah 2D, lakukan segmentasi dengan U-Net, "
-    "lalu buat model 3D berdasarkan parameter bangunan."
-)
 
 CHECKPOINT = "best_unet_floorplan(1).pth"
 
@@ -29,29 +25,29 @@ def get_model():
 
 
 uploaded_file = st.file_uploader(
-    "Upload denah 2D",
+    "Upload 2D floor plan",
     type=["png", "jpg", "jpeg"]
 )
 
-st.sidebar.header("Parameter Bangunan")
+st.sidebar.header("Building Dimensions")
 
 wall_height = st.sidebar.slider(
-    "Tinggi dinding (m)",
+    "Height of wall (m)",
     2.0, 5.0, 3.0, 0.1
 )
 
 wall_thickness = st.sidebar.slider(
-    "Ketebalan dinding (m)",
+    "Wall thickness (m)",
     0.05, 0.40, 0.15, 0.01
 )
 
 floor_thickness = st.sidebar.slider(
-    "Ketebalan lantai (m)",
+    "floor thickness (m)",
     0.05, 0.30, 0.12, 0.01
 )
 
 pixel_size = st.sidebar.number_input(
-    "Skala (meter/piksel)",
+    "Scale (meter/pixel)",
     min_value=0.001,
     max_value=0.2,
     value=0.02,
@@ -65,7 +61,7 @@ if uploaded_file is not None:
     st.subheader("Input Denah")
     st.image(image, use_container_width=True)
 
-    if st.button("Rekonstruksi 3D", type="primary"):
+    if st.button("3D Reconstruction", type="primary"):
         try:
             model = get_model()
             mask = predict_mask(model, image)
@@ -84,7 +80,7 @@ if uploaded_file is not None:
             st.error(f"Proses gagal: {e}")
 
     if "scene" in st.session_state:
-        st.subheader("Model 3D")
+        st.subheader("3D Model")
 
         # Visualisasi sementara dari geometri trimesh.
         scene = st.session_state["scene"]
