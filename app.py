@@ -42,7 +42,7 @@ wall_thickness = st.sidebar.slider(
 )
 
 floor_thickness = st.sidebar.slider(
-    "floor thickness (m)",
+    "Floor thickness (m)",
     0.05, 0.30, 0.12, 0.01
 )
 
