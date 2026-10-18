@@ -8,3 +8,5 @@ trimesh
 pyvista
 stpyvista
 scipy
+panel>=1.4.1
+bokeh>=3.4,<3.7
