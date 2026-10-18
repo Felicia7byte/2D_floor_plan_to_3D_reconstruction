@@ -14,7 +14,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("2D Floorplan to 3D Reconstruction")
+st.title("2D Floorplan to 3D Room Reconstruction")
 
 CHECKPOINT = "best_unet_floorplan(1).pth"
 
